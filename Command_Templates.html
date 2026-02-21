@@ -466,6 +466,41 @@
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="Bleeding_Edge.html" class="md-nav__link">
         
@@ -497,6 +532,35 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -779,6 +843,15 @@
   
     <nav class="md-nav" aria-label="Python">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-macro-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python: Macro parameters
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#python-rawparams" class="md-nav__link">
@@ -2094,9 +2167,50 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2264,6 +2378,15 @@
   
     <nav class="md-nav" aria-label="Python">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-macro-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python: Macro parameters
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#python-rawparams" class="md-nav__link">
@@ -2478,6 +2601,8 @@ gcode:
   RESTORE_GCODE_STATE NAME=clean_nozzle_state
 </code></pre></div>
 
+<p>Additionally, in macro contexts you can use <code>RETURN</code> to end macro execution
+early.</p>
 <h4 id="jinja2-macro-parameters">Jinja2: Macro parameters<a class="headerlink" href="#jinja2-macro-parameters" title="Permanent link">&para;</a></h4>
 <p>It is often useful to inspect parameters passed to the macro when
 it is called. These parameters are available via the <code>params</code>
@@ -2565,6 +2690,13 @@ wipe_count = 8
 emit(&quot;G90&quot;)
 emit(&quot;G0 Z15 F300&quot;)
 ...
+</code></pre></div>
+
+<h4 id="python-macro-parameters">Python: Macro parameters<a class="headerlink" href="#python-macro-parameters" title="Permanent link">&para;</a></h4>
+<p>Parameters passed to python macros are stored in the <code>params</code> variable.</p>
+<div class="highlight"><pre><span></span><code>[gcode_macro PARAMETER_EXAMPLE]
+gcode:
+  !respond_info(f&quot;{params}&quot;)
 </code></pre></div>
 
 <h4 id="python-rawparams">Python: Rawparams<a class="headerlink" href="#python-rawparams" title="Permanent link">&para;</a></h4>
@@ -2666,10 +2798,12 @@ into account when using SET_GCODE_VARIABLE.</p>
 <p>The [delayed_gcode] configuration option can be used to execute a delayed
 gcode sequence:</p>
 <div class="highlight"><pre><span></span><code>[delayed_gcode clear_display]
+description: Clear the LCD display message
 gcode:
   M117
 
 [gcode_macro load_filament]
+description: Load 50mm of filament
 gcode:
  G91
  G1 E50

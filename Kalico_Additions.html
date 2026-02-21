@@ -598,6 +598,41 @@
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Bleeding Edge
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Bleeding Edge
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="Bleeding_Edge.html" class="md-nav__link">
         
@@ -629,6 +664,35 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Nonlinear_Pressure_Advance.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nonlinear Pressure Advance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1980,9 +2044,50 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Load_Cell.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Cells
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Telemetry.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kalico Telemetry
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2186,6 +2291,9 @@
 <h2 id="enhanced-behavior">Enhanced behavior<a class="headerlink" href="#enhanced-behavior" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="CANBUS.html#finding-the-canbus_uuid-for-new-micro-controllers"><code>canbus_query.py</code></a> now responds with all Kalico devices, even after they've been assigned a node_id.</li>
+<li>Input shaper calibration now warns about active fans that may affect measurement accuracy.</li>
+<li><a href="G-Codes.html#bed_mesh_check"><code>BED_MESH_CHECK</code></a> validates the current bed mesh against specified criteria, allowing you to check maximum deviation and slope between adjacent points before printing.</li>
+<li><a href="Config_Reference.html#resonance_tester"><code>[resonance_tester]</code></a> now supports multiple accelerometer chips via the new <code>accel_chips</code> parameter, allowing data from multiple accelerometers to be combined for more accurate input shaper calibration.</li>
 </ul>
 <h2 id="new-kalico-modules">New Kalico Modules<a class="headerlink" href="#new-kalico-modules" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2221,7 +2329,8 @@
 <ul>
 <li><a href="Config_Reference.html#temperature_fan"><code>[temperature_fan] control: curve</code></a> lets you set a fan curve instead of linear control</li>
 <li><a href="Config_Reference.html#temperature_fan"><code>[temperature_fan] reverse: True</code></a> will let you control a fan in reverse to temperature control. The lower the temperature, the higher the fan runs.</li>
-<li>Fans now normalize PWM power within <code>off_below</code> and <code>max_power</code>, so setting a fan to 10% will get you 10% fan speed within your configured off/max range.</li>
+<li>Fans now normalize PWM power within <code>min_power</code> and <code>max_power</code>, so setting a fan to 10% will get you 10% fan speed within your configured min/max range.</li>
+<li>Dual-loop PID control to accurately manage the bed's temperature while limiting heater power to prevent exceeding a maximum temperature.</li>
 </ul>
 <h2 id="tmc-drivers">TMC Drivers<a class="headerlink" href="#tmc-drivers" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2236,6 +2345,7 @@
 <li>Macros may also be loaded from other files, using <code>!!include path/to/file.py</code></li>
 </ul>
 </li>
+<li>Inside a macro you can use <code>RETURN</code> to end macro execution early without raising an error.</li>
 </ul>
 <h2 id="plugins">Plugins<a class="headerlink" href="#plugins" title="Permanent link">&para;</a></h2>
 <p>Extend your Kalico installation with custom plugins.</p>
