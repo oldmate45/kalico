@@ -9,10 +9,10 @@ from . import led
 
 BACKGROUND_PRIORITY_CLOCK = 0x7FFFFFFF00000000
 
-BIT_MAX_TIME = 0.000004
+BIT_MAX_TIME = 0.00003 # 0.000004
 RESET_MIN_TIME = 0.000050
 
-MAX_MCU_SIZE = 500  # Sanity check on LED chain length
+MAX_MCU_SIZE = 200 #500  # Sanity check on LED chain length
 
 
 class PrinterNeoPixel:
